@@ -1,0 +1,22 @@
+{
+  "name": "planetary-seclusion-zones",
+  "version": "1.0.0",
+  "title": "Planetary Seclusion Zones",
+  "author": "Eloeri",
+  "homepage": "",
+  "description": "A fork of Intercontinental Rocketry by Meteorswarm. For every planet in Space Age, generates six additional subplanets, allowing you to start fresh with any planet at any time.",
+  "factorio_version": "2.0",
+  "dependencies": [
+    "base",
+    "space-age",
+    "? cargo-ships",
+    "? naufulglebunusilo"
+  ],
+  "quality_required": false,
+  "rail_bridges_required": false,
+  "space_travel_required": false,
+  "spoiling_required": false,
+  "freezing_required": false,
+  "segmented_units_required": false,
+  "expansion_shaders_required": false
+}
