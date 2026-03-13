@@ -167,9 +167,9 @@ for i,planet in ipairs(planets) do
     local old_planet=data.raw["planet"][planet]
     local subplanet_base = table.deepcopy(old_planet)
     if planets[i] == "nauvis" then
-        apply_preset(old_planet, presets.Ultimate_Biters)
-        --apply_preset(old_planet, presets.Nauvis_Railworld)
-        --apply_preset(old_planet, presets.Half_Biters)
+        --apply_preset(old_planet, presets.Ultimate_Biters)
+        apply_preset(old_planet, presets.Nauvis_Railworld)
+        apply_preset(old_planet, presets.Half_Biters)
     elseif planets[i] == "vulcanus" then
         apply_preset(old_planet, presets.Vulcanus_Railworld)
     elseif planets[i] == "gleba" then
