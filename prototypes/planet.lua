@@ -11,11 +11,11 @@ data.raw["space-connection"]["nauvis-gleba"].length = 15000 * 10
 data.raw["space-connection"]["nauvis-fulgora"].length = 15000 * 10
 data.raw["space-connection"]["vulcanus-gleba"].length = 15000 * 10
 data.raw["space-connection"]["fulgora-aquilo"].length = 30000 * 10
-Planet_Locations={"north","south", "east", "west","polar-north","polar-south","far-east","far-west", "north-east", "north-west", "south-east", "south-west", "far-north-east", "far-south-east", "far-north-west", "far-south-west",}
-Planet_Locations_temperature={1,1,0,0,2,2,0,0,1,1,1,1,1,1,1,1}
-Planet_Locations_orientation_mod={0.25,-0.25,0,0,0.5,-0.5,0,0,0.25,0.25,-0.25,-0.25,0.25,-0.25,0.25,-0.25}
-Planet_Locations_distance_mod=   {0,0,1.5,-1.5,0,0,3,-3,1.5,-1.5,1.5,-1.5,3,3,-3,-3}
-Planet_Locations_label_orientation_mod={0,0,0.25,0,0,0,0.25,0,0.25,0,0.25,0,0.25,0.25,0,0}
+Planet_Locations={"north","south", "east", "west","polar-north","polar-south","far-east","far-west", "north-east", "north-west", "south-east", "south-west", "far-north-east", "far-south-east", "far-north-west", "far-south-west","far-north-pole,","far-south-pole"}
+Planet_Locations_temperature={1,1,0,0,2,2,0,0,1,1,1,1,1,1,1,1,1,1}
+Planet_Locations_orientation_mod={0.25,-0.25,0,0,0.5,-0.5,0,0,0.25,0.25,-0.25,-0.25,0.25,-0.25,0.25,-0.25,1,-1}
+Planet_Locations_distance_mod=   {0,0,1.5,-1.5,0,0,3,-3,1.5,-1.5,1.5,-1.5,3,3,-3,-3,0,0}
+Planet_Locations_label_orientation_mod={0,0,0.25,0,0,0,0.25,0,0.25,0,0.25,0,0.25,0.25,0,0,0,0}
 
 Planet_label_mod={0.125,0.125,0.125,-0.125,-0.25}
 Planet_Locations_seed_offset={}
@@ -343,7 +343,15 @@ for i,planet in ipairs(planets) do
 
         local connections
         local root2 = math.sqrt(2)
-        if direction == "polar-north" then
+        if direction == "far-north-pole" then
+            connections  = {
+                {from = planet .. "-" .. Planet_Locations[5], mult = 1.0 }, --North Pole
+            }
+        elseif direction == "far-south-pole" then
+            connections = {
+                {from = planet .. "-" .. Planet_Locations[6], mult = 1.0 }, --South Pole
+            }
+        elseif direction == "polar-north" then
             connections  = {
                 {from = planet .. "-" .. Planet_Locations[1], mult = 1.0 }, --North 
             }
