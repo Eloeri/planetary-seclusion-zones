@@ -18,3 +18,15 @@ Version: 1.0.3
 Date: 2026-03-13
   Bugfixes:
     - Fix thumbnail picture.
+---------------------------------------------------------------------------------------------------
+Version: 1.0.4
+Date: 2026-03-13
+  Bugfixes:
+    - Remove references to unsupported mods. 
+---------------------------------------------------------------------------------------------------
+Version: 1.0.5
+Date: 2026-03-14
+  Features:
+    - East and West Nauvis and Gleba evolution starts at 50%.
+    - Far East and Far West Nauvis and Gleba evolution starts at 75%.
+    - Far North East and Far North West Nauvis and Gleba evolution starts at 100%.

@@ -1,5 +1,17 @@
 local evolution_targets = {
+    ["nauvis-east"] = .5,
+    ["nauvis-west"] = .5,
+    ["nauvis-far-east"] = .75,
+    ["nauvis-far-west"] = .75,
+    ["nauvis-far-north-east"] = 1,
     ["nauvis-far-north-west"] = 1,
+    ["gleba-east"] = .5,
+    ["gleba-west"] = .5,
+    ["gleba-far-east"] = .75,
+    ["gleba-far-west"] = .75,
+    ["gleba-far-north-east"] = 1,
+    ["gleba-far-north-west"] = 1,
+
 }
 
 local function apply_surface_evolution(surface_name)

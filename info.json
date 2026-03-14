@@ -1,6 +1,6 @@
 {
   "name": "planetary-seclusion-zones",
-  "version": "1.0.3",
+  "version": "1.0.5",
   "title": "Planetary Seclusion Zones",
   "author": "Eloeri",
   "homepage": "",
@@ -8,9 +8,7 @@
   "factorio_version": "2.0",
   "dependencies": [
     "base",
-    "space-age",
-    "? cargo-ships",
-    "? naufulglebunusilo"
+    "space-age"
   ],
   "quality_required": false,
   "rail_bridges_required": false,

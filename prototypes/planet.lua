@@ -250,6 +250,8 @@ for i,planet in ipairs(planets) do
                 or loc == "south-west" or loc == "south-east" then
                 apply_preset(new_planet, presets.Gleba_Railworld)
                 new_planet.map_gen_settings.autoplace_controls["gleba_enemy_base"] = nil
+            elseif loc == "far-north-east" or loc == "far-north-west" then
+                apply_preset(new_planet, presets.Ultimate_Pentapods)
             elseif Planet_Locations_temperature[j] == 1 then
                 apply_preset(new_planet, presets.Half_Pentapods)
             elseif Planet_Locations_temperature[j] == 2 then
