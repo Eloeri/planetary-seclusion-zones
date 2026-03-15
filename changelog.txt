@@ -30,3 +30,8 @@ Date: 2026-03-14
     - East and West Nauvis and Gleba evolution starts at 50%.
     - Far East and Far West Nauvis and Gleba evolution starts at 75%.
     - Far North East and Far North West Nauvis and Gleba evolution starts at 100%.
+---------------------------------------------------------------------------------------------------
+Version: 1.0.6
+Date: 2026-03-14
+  Changes:
+    - Reworked formatting for better readability, and for easier editing for anyone who wants to add more planets.
