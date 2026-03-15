@@ -155,12 +155,10 @@ Fulgora_Default_Settings = {
 Fulgora_Railworld = {
     ["scrap"] = {frequency = 1/6,size = 6,richness = 6,},
     ["fulgora_islands"] = {frequency = 1/6,size = 6,},},
-Fulgora_Default_Settings_Min_Cliffs = {
-    ["fulgora_cliff"] = {frequency = 6,size = 1/6},},
+Fulgora_Default_Cliffs = {
+    ["fulgora_cliff"] = {frequency = 1,size = 1},},
 Fulgora_Half_Cliffs = {
     ["fulgora_cliff"] = {frequency = 2,size = .5},},
-Fulgora_Regular_Cliffs = {
-    ["fulgora_cliff"] = {frequency = 1,size = 1},},
 Fulgora_Double_Cliffs = {
     ["fulgora_cliff"] = {frequency = 1/2,size = 2},},
 Fulgora_Triple_Cliffs = {
@@ -233,8 +231,6 @@ for i,planet in ipairs(planets) do
             elseif loc.temp == 2 then
                 new_planet.map_gen_settings.autoplace_controls["trees"] = nil
                 new_planet.map_gen_settings.autoplace_controls["enemy-base"] = nil
-            elseif loc == "east" then
-
             else
                 apply_preset(new_planet, presets.Nauvis_Default_Settings)
             end
