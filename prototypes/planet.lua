@@ -122,7 +122,7 @@ Double_Volcanism = {
 Max_Volcanism = {
     ["vulcanus_volcanism"] = {frequency = 1/6,size = 6,}},
 Ultimate_Volcanism = {
-    ["vulcanus_volcanism"] = {frequency = 1/36,size = 36,}}
+    ["vulcanus_volcanism"] = {frequency = 1/36,size = 36,}},
 Gleba_Default_Settings = {
     ["gleba_plants"] = {frequency = 1,size = 1,}},
 Gleba_Railworld = {
