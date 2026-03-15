@@ -29,22 +29,63 @@ Planet_Locations={
     "far-north-west",
     "far-south-west",
 }
-local North = Planet_Locations[1]
-local South = Planet_Locations[2]
-local East = Planet_Locations[3]
-local West = Planet_Locations[4]
-local North_Pole = Planet_Locations[5]
-local South_Pole = Planet_Locations[6]
-local Far_East = Planet_Locations[7]
-local Far_West = Planet_Locations[8]
-local North_East = Planet_Locations[9]
-local North_West = Planet_Locations[10]
-local South_East = Planet_Locations[11]
-local South_West = Planet_Locations[12]
-local Far_North_East = Planet_Locations[13]
-local Far_South_East = Planet_Locations[14]
-local Far_North_West = Planet_Locations[15]
-local Far_South_West = Planet_Locations[16]
+
+Planet_Locations_orientation_mod={
+    0.25,
+    -0.25,
+    0,
+    0,
+    0.5,
+    -0.5,
+    0,
+    0,
+    0.25,
+    0.25,
+    -0.25,
+    -0.25,
+    0.25,
+    -0.25,
+    0.25,
+    -0.25,
+}
+
+Planet_Locations_distance_mod={
+    0,
+    0,
+    1.5,
+    -1.5,
+    0,
+    0,
+    3,
+    -3,
+    1.5,
+    -1.5,
+    1.5,
+    -1.5,
+    3,
+    3,
+    -3,
+    -3,
+}
+
+Planet_Locations_label_orientation_mod={
+    0,
+    0,
+    0.25,
+    0,
+    0,
+    0,
+    0.25,
+    0,
+    0.25,
+    0,
+    0.25,
+    0,
+    0.25,
+    0.25,
+    0,
+    0,
+}
 
 Planet_Locations_temperature={
     1,
@@ -64,60 +105,7 @@ Planet_Locations_temperature={
     1,
     1,
 }
-Planet_Locations_orientation_mod={
-    0.25,
-    -0.25,
-    0,
-    0,
-    0.5,
-    -0.5,
-    0,
-    0,
-    0.25,
-    0.25,
-    -0.25,
-    -0.25,
-    0.25,
-    -0.25,
-    0.25,
-    -0.25,
-}
-Planet_Locations_distance_mod={
-    0,
-    0,
-    1.5,
-    -1.5,
-    0,
-    0,
-    3,
-    -3,
-    1.5,
-    -1.5,
-    1.5,
-    -1.5,
-    3,
-    3,
-    -3,
-    -3,
-}
-Planet_Locations_label_orientation_mod={
-    0,
-    0,
-    0.25,
-    0,
-    0,
-    0,
-    0.25,
-    0,
-    0.25,
-    0,
-    0.25,
-    0,
-    0.25,
-    0.25,
-    0,
-    0,
-}
+
 Planet_label_mod={0.125,0.125,0.125,-0.125,-0.25}
 Planet_Locations_seed_offset={}
 
@@ -444,6 +432,23 @@ for i,planet in ipairs(planets) do
 
         local connections
         local root2 = math.sqrt(2)
+        local North = Planet_Locations[1]
+        local South = Planet_Locations[2]
+        local East = Planet_Locations[3]
+        local West = Planet_Locations[4]
+        local North_Pole = Planet_Locations[5]
+        local South_Pole = Planet_Locations[6]
+        local Far_East = Planet_Locations[7]
+        local Far_West = Planet_Locations[8]
+        local North_East = Planet_Locations[9]
+        local North_West = Planet_Locations[10]
+        local South_East = Planet_Locations[11]
+        local South_West = Planet_Locations[12]
+        local Far_North_East = Planet_Locations[13]
+        local Far_South_East = Planet_Locations[14]
+        local Far_North_West = Planet_Locations[15]
+        local Far_South_West = Planet_Locations[16]
+
         if direction == "north-pole" then
             connections  = {
                 {from = planet .. "-" .. North, mult = 1.0 }, --North 
