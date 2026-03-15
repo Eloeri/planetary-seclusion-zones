@@ -11,12 +11,121 @@ data.raw["space-connection"]["nauvis-gleba"].length = 15000 * 10
 data.raw["space-connection"]["nauvis-fulgora"].length = 15000 * 10
 data.raw["space-connection"]["vulcanus-gleba"].length = 15000 * 10
 data.raw["space-connection"]["fulgora-aquilo"].length = 30000 * 10
+<<<<<<< Updated upstream
 Planet_Locations={"north","south", "east", "west","polar-north","polar-south","far-east","far-west", "north-east", "north-west", "south-east", "south-west", "far-north-east", "far-south-east", "far-north-west", "far-south-west",}
 Planet_Locations_temperature={1,1,0,0,2,2,0,0,1,1,1,1,1,1,1,1}
 Planet_Locations_orientation_mod={0.25,-0.25,0,0,0.5,-0.5,0,0,0.25,0.25,-0.25,-0.25,0.25,-0.25,0.25,-0.25}
 Planet_Locations_distance_mod=   {0,0,1.5,-1.5,0,0,3,-3,1.5,-1.5,1.5,-1.5,3,3,-3,-3}
 Planet_Locations_label_orientation_mod={0,0,0.25,0,0,0,0.25,0,0.25,0,0.25,0,0.25,0.25,0,0}
+=======
+Planet_Locations={
+    "north",
+    "south",
+    "east",
+    "west",
+    "north-pole",
+    "south-pole",
+    "far-east",
+    "far-west",
+    "north-east",
+    "north-west",
+    "south-east",
+    "south-west",
+    "far-north-east",
+    "far-south-east",
+    "far-north-west",
+    "far-south-west",
+}
+local North = Planet_Locations[1]
+local South = Planet_Locations[2]
+local East = Planet_Locations[3]
+local West = Planet_Locations[4]
+local North_Pole = Planet_Locations[5]
+local South_Pole = Planet_Locations[6]
+local Far_East = Planet_Locations[7]
+local Far_West = Planet_Locations[8]
+local North_East = Planet_Locations[9]
+local North_West = Planet_Locations[10]
+local South_East = Planet_Locations[11]
+local South_West = Planet_Locations[12]
+local Far_North_East = Planet_Locations[13]
+local Far_South_East = Planet_Locations[14]
+local Far_North_West = Planet_Locations[15]
+local Far_South_West = Planet_Locations[16]
+>>>>>>> Stashed changes
 
+Planet_Locations_temperature={
+    1,
+    1,
+    0,
+    0,
+    2,
+    2,
+    0,
+    0,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+}
+Planet_Locations_orientation_mod={
+    0.25,
+    -0.25,
+    0,
+    0,
+    0.5,
+    -0.5,
+    0,
+    0,
+    0.25,
+    0.25,
+    -0.25,
+    -0.25,
+    0.25,
+    -0.25,
+    0.25,
+    -0.25,
+}
+Planet_Locations_distance_mod={
+    0,
+    0,
+    1.5,
+    -1.5,
+    0,
+    0,
+    3,
+    -3,
+    1.5,
+    -1.5,
+    1.5,
+    -1.5,
+    3,
+    3,
+    -3,
+    -3,
+}
+Planet_Locations_label_orientation_mod={
+    0,
+    0,
+    0.25,
+    0,
+    0,
+    0,
+    0.25,
+    0,
+    0.25,
+    0,
+    0.25,
+    0,
+    0.25,
+    0.25,
+    0,
+    0,
+}
 Planet_label_mod={0.125,0.125,0.125,-0.125,-0.25}
 Planet_Locations_seed_offset={}
 
@@ -343,100 +452,100 @@ for i,planet in ipairs(planets) do
 
         local connections
         local root2 = math.sqrt(2)
-        if direction == "polar-north" then
+        if direction == "north-pole" then
             connections  = {
-                {from = planet .. "-" .. Planet_Locations[1], mult = 1.0 }, --North 
+                {from = planet .. "-" .. North, mult = 1.0 }, --North 
             }
-        elseif direction == "polar-south" then
+        elseif direction == "south-pole" then
             connections = {
-                {from = planet .. "-" .. Planet_Locations[2], mult = 1.0 }, --South
+                {from = planet .. "-" .. South, mult = 1.0 }, --South
             }
         elseif direction == "far-east" then
             connections = {
-                {from = planet .. "-" .. Planet_Locations[8], mult = 1.0 }, --Far West
-                {from = planet .. "-" .. Planet_Locations[3], mult = 1.0 }  --East
+                {from = planet .. "-" .. Far_West, mult = 1.0 }, --Far West
+                {from = planet .. "-" .. East, mult = 1.0 }  --East
             }
         elseif direction == "far-west" then
             connections = {
-                {from = planet .. "-" .. Planet_Locations[4], mult = 1.0 }  --West
+                {from = planet .. "-" .. West, mult = 1.0 }  --West
             }
         elseif direction == "east" then
             connections = {
-                {from = planet .. "-" .. Planet_Locations[2], mult = root2 }, --South
-                {from = planet .. "-" .. Planet_Locations[1], mult = root2 }, --North
+                {from = planet .. "-" .. South, mult = root2 }, --South
+                {from = planet .. "-" .. North, mult = root2 }, --North
                 {from = planet, mult = 1.0 }
             }
         elseif direction == "west" then
             connections = {
-                {from = planet .. "-" .. Planet_Locations[2], mult = root2 }, --South
-                {from = planet .. "-" .. Planet_Locations[1], mult = root2 }, --North
+                {from = planet .. "-" .. South, mult = root2 }, --South
+                {from = planet .. "-" .. North, mult = root2 }, --North
                 {from = planet, mult = 1.0 }
             }
         elseif direction == "north-west" then
             connections = {
-                {from = planet .. "-" .. Planet_Locations[5], mult = 1.0 },   --Polar North
-                {from = planet .. "-" .. Planet_Locations[8], mult = root2 }, --Far West
-                {from = planet .. "-" .. Planet_Locations[1], mult = 1.0 },   --North
-                {from = planet .. "-" .. Planet_Locations[4], mult = 1.0 },   --West
+                {from = planet .. "-" .. North_Pole, mult = 1.0 },   --Polar North
+                {from = planet .. "-" .. Far_West, mult = root2 }, --Far West
+                {from = planet .. "-" .. North, mult = 1.0 },   --North
+                {from = planet .. "-" .. West, mult = 1.0 },   --West
                 {from = planet, mult = root2 }
             }
         elseif direction == "north-east" then
             connections = {
-                {from = planet .. "-" .. Planet_Locations[5], mult = 1.0 },   --Polar North
-                {from = planet .. "-" .. Planet_Locations[7], mult = root2 }, --Far East
-                {from = planet .. "-" .. Planet_Locations[1], mult = 1.0 },   --North
-                {from = planet .. "-" .. Planet_Locations[3], mult = 1.0 },   --East
+                {from = planet .. "-" .. North_Pole, mult = 1.0 },   --Polar North
+                {from = planet .. "-" .. Far_East, mult = root2 }, --Far East
+                {from = planet .. "-" .. North, mult = 1.0 },   --North
+                {from = planet .. "-" .. East, mult = 1.0 },   --East
                 {from = planet, mult = root2 }
             }
         elseif direction == "south-west" then
             connections = {
-                {from = planet .. "-" .. Planet_Locations[6], mult = 1.0 },   --Polar South
-                {from = planet .. "-" .. Planet_Locations[8], mult = root2 }, --Far West
-                {from = planet .. "-" .. Planet_Locations[2], mult = 1.0 },   --South
-                {from = planet .. "-" .. Planet_Locations[4], mult = 1.0 },   --West
+                {from = planet .. "-" .. South_Pole, mult = 1.0 },   --Polar South
+                {from = planet .. "-" .. Far_West, mult = root2 }, --Far West
+                {from = planet .. "-" .. South, mult = 1.0 },   --South
+                {from = planet .. "-" .. West, mult = 1.0 },   --West
                 {from = planet, mult = root2 }
             }
         elseif direction == "south-east" then
             connections = {
-                {from = planet .. "-" .. Planet_Locations[6], mult = 1.0 },   --Polar South
-                {from = planet .. "-" .. Planet_Locations[7], mult = root2 }, --Far East
-                {from = planet .. "-" .. Planet_Locations[2], mult = 1.0 },   --South
-                {from = planet .. "-" .. Planet_Locations[3], mult = 1.0 },   --East
+                {from = planet .. "-" .. South_Pole, mult = 1.0 },   --Polar South
+                {from = planet .. "-" .. Far_East, mult = root2 }, --Far East
+                {from = planet .. "-" .. South, mult = 1.0 },   --South
+                {from = planet .. "-" .. East, mult = 1.0 },   --East
                 {from = planet, mult = root2 }
             }
         elseif direction == "far-north-west" then
             connections = {
-                {from = planet .. "-" .. Planet_Locations[5], mult = 1.0 },   --Polar North
-                {from = planet .. "-" .. Planet_Locations[10], mult = 1.0 },   --North West
-                {from = planet .. "-" .. Planet_Locations[8], mult = 1.0 },   --Far West
-                {from = planet .. "-" .. Planet_Locations[4], mult = root2 }, --West
-                {from = planet .. "-" .. Planet_Locations[13], mult = 1.0 },  --Far North East
-                {from = planet .. "-" .. Planet_Locations[7], mult = root2 }  --Far East
+                {from = planet .. "-" .. North_Pole, mult = 1.0 },   --Polar North
+                {from = planet .. "-" .. North_West, mult = 1.0 },   --North West
+                {from = planet .. "-" .. Far_West, mult = 1.0 },   --Far West
+                {from = planet .. "-" .. West, mult = root2 }, --West
+                {from = planet .. "-" .. Far_North_East, mult = 1.0 },  --Far North East
+                {from = planet .. "-" .. Far_East, mult = root2 }  --Far East
             }
         elseif direction == "far-north-east" then
             connections = {
-                {from = planet .. "-" .. Planet_Locations[5], mult = 1.0 },   --Polar North
-                {from = planet .. "-" .. Planet_Locations[9], mult = 1.0 },  --North East
-                {from = planet .. "-" .. Planet_Locations[7], mult = 1.0 },   --Far East
-                {from = planet .. "-" .. Planet_Locations[3], mult = root2 }, --East
-                {from = planet .. "-" .. Planet_Locations[8], mult = root2 }, --Far West
+                {from = planet .. "-" .. North_Pole, mult = 1.0 },   --Polar North
+                {from = planet .. "-" .. North_East, mult = 1.0 },  --North East
+                {from = planet .. "-" .. Far_East, mult = 1.0 },   --Far East
+                {from = planet .. "-" .. East, mult = root2 }, --East
+                {from = planet .. "-" .. Far_West, mult = root2 }, --Far West
             }
         elseif direction == "far-south-west" then
             connections = {
-                {from = planet .. "-" .. Planet_Locations[6], mult = 1.0 },   --Polar South
-                {from = planet .. "-" .. Planet_Locations[12], mult = 1.0 },  --South West
-                {from = planet .. "-" .. Planet_Locations[8], mult = 1.0 },   --Far West
-                {from = planet .. "-" .. Planet_Locations[4], mult = root2 }, --West
-                {from = planet .. "-" .. Planet_Locations[14], mult = 1.0 },  --Far South East
-                {from = planet .. "-" .. Planet_Locations[7], mult = root2 }, --Far East
+                {from = planet .. "-" .. South_Pole, mult = 1.0 },   --Polar South
+                {from = planet .. "-" .. South_West, mult = 1.0 },  --South West
+                {from = planet .. "-" .. Far_West, mult = 1.0 },   --Far West
+                {from = planet .. "-" .. West, mult = root2 }, --West
+                {from = planet .. "-" .. Far_South_East, mult = 1.0 },  --Far South East
+                {from = planet .. "-" .. Far_East, mult = root2 }, --Far East
             }
         elseif direction == "far-south-east" then
             connections = {
-                {from = planet .. "-" .. Planet_Locations[6], mult = 1.0 },   --Polar South
-                {from = planet .. "-" .. Planet_Locations[12], mult = 1.0 },  --South East
-                {from = planet .. "-" .. Planet_Locations[7], mult = 1.0 },   --Far East
-                {from = planet .. "-" .. Planet_Locations[3], mult = root2 }, --East
-                {from = planet .. "-" .. Planet_Locations[8], mult = root2 }, --Far West
+                {from = planet .. "-" .. South_Pole, mult = 1.0 },   --Polar South
+                {from = planet .. "-" .. South_East, mult = 1.0 },  --South East
+                {from = planet .. "-" .. Far_East, mult = 1.0 },   --Far East
+                {from = planet .. "-" .. East, mult = root2 }, --East
+                {from = planet .. "-" .. Far_West, mult = root2 }, --Far West
             }
         else
             connections = {
