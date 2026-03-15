@@ -11,13 +11,6 @@ data.raw["space-connection"]["nauvis-gleba"].length = 15000 * 10
 data.raw["space-connection"]["nauvis-fulgora"].length = 15000 * 10
 data.raw["space-connection"]["vulcanus-gleba"].length = 15000 * 10
 data.raw["space-connection"]["fulgora-aquilo"].length = 30000 * 10
-<<<<<<< Updated upstream
-Planet_Locations={"north","south", "east", "west","polar-north","polar-south","far-east","far-west", "north-east", "north-west", "south-east", "south-west", "far-north-east", "far-south-east", "far-north-west", "far-south-west",}
-Planet_Locations_temperature={1,1,0,0,2,2,0,0,1,1,1,1,1,1,1,1}
-Planet_Locations_orientation_mod={0.25,-0.25,0,0,0.5,-0.5,0,0,0.25,0.25,-0.25,-0.25,0.25,-0.25,0.25,-0.25}
-Planet_Locations_distance_mod=   {0,0,1.5,-1.5,0,0,3,-3,1.5,-1.5,1.5,-1.5,3,3,-3,-3}
-Planet_Locations_label_orientation_mod={0,0,0.25,0,0,0,0.25,0,0.25,0,0.25,0,0.25,0.25,0,0}
-=======
 Planet_Locations={
     "north",
     "south",
@@ -52,7 +45,6 @@ local Far_North_East = Planet_Locations[13]
 local Far_South_East = Planet_Locations[14]
 local Far_North_West = Planet_Locations[15]
 local Far_South_West = Planet_Locations[16]
->>>>>>> Stashed changes
 
 Planet_Locations_temperature={
     1,
