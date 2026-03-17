@@ -58,6 +58,7 @@ Nauvis_Default_Settings= {
     ["copper-ore"] = {frequency = 1,size = 1,richness = 1},
     ["stone"] = {frequency = 1,size = 1,richness = 1},
     ["uranium-ore"] = {frequency = 1,size = 1,richness = 1},
+    ["crude-oil"] = {frequency = 1,size = 1,richness = 1},
     ["coal"] = {frequency = 1,size = 1,richness = 1},
     ["water"] = {frequency = 1,size = 1},},
 Nauvis_Railworld = {
@@ -65,6 +66,7 @@ Nauvis_Railworld = {
     ["copper-ore"] = {frequency = 1/6,size = 6,richness = 6},
     ["stone"] = {frequency = 1/6,size = 6,richness = 6},
     ["uranium-ore"] = {frequency = 1/6,size = 6,richness = 6},
+    ["crude-oil"] = {frequency = 1/6,size = 6,richness = 6},
     ["coal"] = {frequency = 1/6,size = 6,richness = 6},
     ["water"] = {frequency = 0.5,size = 1.5},},
 Nauvis_Min_Cliffs = {
@@ -81,6 +83,8 @@ Nauvis_Max_Cliffs = {
     ["nauvis_cliff"] = {frequency = 1/6,size = 6},},
 Default_Biters = {
     ["enemy-base"] = {frequency = 1,size = 1},},
+Min_Biters = {
+    ["enemy-base"] = {frequency = .1,size = .1},},
 Half_Biters = {
     ["enemy-base"] = {frequency = .5,size = .5},},
 Three_Fourth_Biters = {
@@ -95,7 +99,7 @@ Vulcanus_Default_Settings= {
     ["vulcanus_coal"] = {frequency = 1,size = 1,richness = 1,},
     ["calcite"] = {frequency = 1,size = 1,richness = 1,},
     ["sulfuric_acid_geyser"] = {frequency = 1,size = 1,richness = 1,},
-    ["tungsten_ore"] = {frequency = 1/6,size = 6,richness = 6,}},
+    ["tungsten_ore"] = {frequency = 1,size = 1,richness = 1,}},
 Vulcanus_Railworld = {
     ["vulcanus_coal"] = {frequency = 1/6,size = 6,richness = 6,},
     ["calcite"] = {frequency = 1/6,size = 6,richness = 6,},
@@ -141,6 +145,8 @@ Gleba_Max_Cliffs = {
     ["gleba_cliff"] = {frequency = 1/6,size = 6},},
 Default_Pentapods = {
     ["gleba_enemy_base"] = {frequency = 1,size = 1},},
+Min_Pentapods = {
+    ["gleba_enemy_base"] = {frequency = .1,size = .1},},
 Half_Pentapods = {
     ["gleba_enemy_base"] = {frequency = .5,size = .5},},
 Triple_Pentapods = {
@@ -187,12 +193,12 @@ for i,planet in ipairs(planets) do
     if planets[i] == "nauvis" then
         --apply_preset(old_planet, presets.Ultimate_Biters)
         apply_preset(old_planet, presets.Nauvis_Railworld)
-        apply_preset(old_planet, presets.Half_Biters)
+        apply_preset(old_planet, presets.Min_Biters)
     elseif planets[i] == "vulcanus" then
         apply_preset(old_planet, presets.Vulcanus_Railworld)
     elseif planets[i] == "gleba" then
         apply_preset(old_planet, presets.Gleba_Railworld)
-        apply_preset(old_planet, presets.Half_Pentapods)
+        apply_preset(old_planet, presets.Min_Pentapods)
     elseif planets[i] == "fulgora" then
         apply_preset(old_planet, presets.Fulgora_Railworld)
     elseif planets[i] == "aquilo" then

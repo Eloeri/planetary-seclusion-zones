@@ -35,3 +35,15 @@ Version: 1.0.6
 Date: 2026-03-14
   Changes:
     - Reworked formatting for better readability, and for easier editing for anyone who wants to add more planets.
+---------------------------------------------------------------------------------------------------
+Version: 1.0.7
+Date: 2026-03-14
+  Bugfixes:
+    - Fixed Vulcanus default Tungsten settings.
+  Changes:
+    - Changed the values for min Biters and Pentapods.
+---------------------------------------------------------------------------------------------------
+Version: 1.0.8
+Date: 2026-03-14
+  Bugfixes:
+    - Fixed Nauvis crude oil settings.
