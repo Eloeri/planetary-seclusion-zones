@@ -1,5 +1,4 @@
 require("prototypes.planet")
-require("prototypes.factoriopedia-simulations")
 require("prototypes.autoplace-control")
 require("prototypes.item")
 require("prototypes.entity.resources")
