@@ -1,3 +1,5 @@
+local planet_map_gen = require("prototypes.planet-map-gen")
+
 local planets={"nauvis","vulcanus","gleba","fulgora","aquilo"}
 
 data.raw["space-location"]["solar-system-edge"].distance=data.raw["space-location"]["solar-system-edge"].distance*8
@@ -13,26 +15,49 @@ data.raw["space-connection"]["vulcanus-gleba"].length = 15000 * 10
 data.raw["space-connection"]["fulgora-aquilo"].length = 30000 * 10
 
 Planet_Locations = {
-    { id="North",        zone="north",         orientation=0.25,  distance=0,   label=0,    temp=1 },
-    { id="South",        zone="south",         orientation=-0.25, distance=0,   label=0,    temp=1 },
-    { id="East",         zone="east",          orientation=0,     distance=1.5, label=0.25, temp=0 },
-    { id="West",         zone="west",          orientation=0,     distance=-1.5,label=0,    temp=0 },
-    { id="NorthPole",    zone="north-pole",    orientation=0.5,   distance=0,   label=0,    temp=2 },
-    { id="SouthPole",    zone="south-pole",    orientation=-0.5,  distance=0,   label=0,    temp=2 },
-    { id="FarEast",      zone="far-east",      orientation=0,     distance=3,   label=0.25, temp=0 },
-    { id="FarWest",      zone="far-west",      orientation=0,     distance=-3,  label=0,    temp=0 },
-    { id="NorthEast",    zone="north-east",    orientation=0.25,  distance=1.5, label=0.25, temp=1 },
-    { id="NorthWest",    zone="north-west",    orientation=0.25,  distance=-1.5,label=0,    temp=1 },
-    { id="SouthEast",    zone="south-east",    orientation=-0.25, distance=1.5, label=0.25, temp=1 },
-    { id="SouthWest",    zone="south-west",    orientation=-0.25, distance=-1.5,label=0,    temp=1 },
-    { id="FarNorthEast", zone="far-north-east",orientation=0.25,  distance=3,   label=0.25, temp=1 },
-    { id="FarSouthEast", zone="far-south-east",orientation=-0.25, distance=3,   label=0.25, temp=1 },
-    { id="FarNorthWest", zone="far-north-west",orientation=0.25,  distance=-3,  label=0,    temp=1 },
-    { id="FarSouthWest", zone="far-south-west",orientation=-0.25, distance=-3,  label=0,    temp=1 },
+    { id="North",         zone="north",         orientation=0.25,  distance=0,   label=0,    temp=1 },
+    { id="South",         zone="south",         orientation=-0.25, distance=0,   label=0,    temp=1 },
+    { id="East",          zone="east",          orientation=0,     distance=1.5, label=0.25, temp=0 },
+    { id="West",          zone="west",          orientation=0,     distance=-1.5,label=0,    temp=0 },
+    { id="North_Pole",    zone="north-pole",    orientation=0.5,   distance=0,   label=0,    temp=2 },
+    { id="South_Pole",    zone="south-pole",    orientation=-0.5,  distance=0,   label=0,    temp=2 },
+    { id="Far_East",      zone="far-east",      orientation=0,     distance=3,   label=0.25, temp=0 },
+    { id="Far_West",      zone="far-west",      orientation=0,     distance=-3,  label=0,    temp=0 },
+    { id="North_East",    zone="north-east",    orientation=0.25,  distance=1.5, label=0.25, temp=1 },
+    { id="North_West",    zone="north-west",    orientation=0.25,  distance=-1.5,label=0,    temp=1 },
+    { id="South_East",    zone="south-east",    orientation=-0.25, distance=1.5, label=0.25, temp=1 },
+    { id="South_West",    zone="south-west",    orientation=-0.25, distance=-1.5,label=0,    temp=1 },
+    { id="Far_North_East",zone="far-north-east",orientation=0.25,  distance=3,   label=0.25, temp=1 },
+    { id="Far_South_East",zone="far-south-east",orientation=-0.25, distance=3,   label=0.25, temp=1 },
+    { id="Far_North_West",zone="far-north-west",orientation=0.25,  distance=-3,  label=0,    temp=1 },
+    { id="Far_South_West",zone="far-south-west",orientation=-0.25, distance=-3,  label=0,    temp=1 },
+    --{ id="Satelite_1",    zone="sat1",          orientation=0.75,  distance=-1.5,label=0,    temp=0 },
+    --{ id="Satelite_2",    zone="sat2",          orientation=0.75,  distance=1.5, label=0,    temp=0 },
+    --{ id="Satelite_3",    zone="sat3",          orientation=-0.75, distance=-1.5,label=0,    temp=0 },
+    --{ id="Satelite_4",    zone="sat4",          orientation=-0.75, distance=1.5, label=0,    temp=0 },
+    --{ id="Satelite_5",    zone="sat5",          orientation=1,     distance=0,   label=0,    temp=0 },
+    --{ id="Satelite_6",    zone="sat6",          orientation=-1,    distance=0,   label=0,    temp=0 },
+    --{ id="Satelite_7",    zone="sat7",          orientation=0.5,   distance=-3,  label=0,    temp=0 },
+    --{ id="Satelite_8",    zone="sat8",          orientation=0.5,   distance=3,   label=0,    temp=0 },
+    --{ id="Satelite_9",    zone="sat9",          orientation=-0.5,  distance=-3,  label=0,    temp=0 },
+    --{ id="Satelite_10",   zone="sat10",         orientation=-0.5,  distance=3,   label=0,    temp=0 },
+    --{ id="Satelite_11",   zone="sat11",         orientation=.25,   distance=-4.5,label=0,    temp=0 },
+    --{ id="Satelite_12",   zone="sat12",         orientation=-.25,  distance=-4.5,label=0,    temp=0 },
+    --{ id="Satelite_13",   zone="sat13",         orientation=0,     distance=-6,  label=0,    temp=0 },
+    --{ id="Satelite_14",   zone="sat14",         orientation=.25,   distance=4.5, label=0,    temp=0 },
+    --{ id="Satelite_15",   zone="sat15",         orientation=-.25,  distance=4.5, label=0,    temp=0 },
+    --{ id="Satelite_16",   zone="sat16",         orientation=0,     distance=6,   label=0,    temp=0 },
+    --{ id="Satelite_17",   zone="sat17",         orientation=.75,   distance=0,   label=0,    temp=0 },
+    --{ id="Satelite_18",   zone="sat18",         orientation=.5,    distance=-1.5,label=0,    temp=0 },
+    --{ id="Satelite_19",   zone="sat19",         orientation=.5,    distance=1.5,label=0,    temp=0 },
+    --{ id="Satelite_20",   zone="sat20",         orientation=0,     distance=-4.5,label=0,    temp=0 },
+    --{ id="Satelite_21",   zone="sat21",         orientation=-0,    distance=4.5, label=0,    temp=0 },
+    --{ id="Satelite_22",   zone="sat22",         orientation=-.5,   distance=-1.5,label=0,    temp=0 },
+    --{ id="Satelite_23",   zone="sat23",         orientation=-.5,   distance=1.5, label=0,    temp=0 },
+    --{ id="Satelite_24",   zone="sat24",         orientation=-.75,  distance=0,   label=0,    temp=0 },
 }
 
 local Loc = {}
-
 for _, loc in ipairs(Planet_Locations) do
     Loc[loc.id] = loc
 end
@@ -40,35 +65,76 @@ end
 Planet_label_mod={0.125,0.125,0.125,-0.125,-0.25}
 Planet_Locations_seed_offset={}
 
-local function hash_string(str)
-    local h = 0
-    for i = 1, #str do
-        h = (h * 31 + string.byte(str, i)) % 2^26
-    end
-    return h
+for i, loc in ipairs(Planet_Locations) do
+    Planet_Locations_seed_offset[i]=math.random(2^32+1)
 end
 
-for i, loc in ipairs(Planet_Locations) do
-    Planet_Locations_seed_offset[i] = hash_string(loc.zone)
+data:extend({
+    {
+        type = "noise-expression",
+        name = "psz_aquilo_pole_elevation",
+        expression = "max(aquilo_elevation, 0.05)"
+    }
+})
+
+local function apply_nauvis_pole_ice_terrain(new_planet)
+    local aquilo = data.raw["planet"]["aquilo"]
+    if not aquilo or not aquilo.map_gen_settings then return end
+
+    local aq_tiles = aquilo.map_gen_settings.autoplace_settings.tile.settings
+    local expr = new_planet.map_gen_settings.property_expression_names
+
+    new_planet.map_gen_settings.autoplace_settings.tile = {
+        settings = {
+            ["snow-flat"]   = table.deepcopy(aq_tiles["snow-flat"]),
+            ["snow-crests"] = table.deepcopy(aq_tiles["snow-crests"]),
+            ["snow-lumpy"]  = table.deepcopy(aq_tiles["snow-lumpy"]),
+            ["snow-patchy"] = table.deepcopy(aq_tiles["snow-patchy"]),
+            ["ice-rough"]   = table.deepcopy(aq_tiles["ice-rough"]),
+            ["ice-smooth"]  = table.deepcopy(aq_tiles["ice-smooth"]),
+        }
+    }
+
+    if aquilo.map_gen_settings.autoplace_settings.decorative then
+        new_planet.map_gen_settings.autoplace_settings.decorative =
+            table.deepcopy(aquilo.map_gen_settings.autoplace_settings.decorative)
+    end
+
+    expr.elevation = "psz_aquilo_pole_elevation"
+
+    local aq_expr = aquilo.map_gen_settings.property_expression_names
+    expr.temperature = aq_expr.temperature
+    expr.moisture    = aq_expr.moisture
+    expr.aux         = aq_expr.aux
 end
+
 
 local presets = {
 Nauvis_Default_Settings= {
     ["iron-ore"] = {frequency = 1,size = 1,richness = 1},
     ["copper-ore"] = {frequency = 1,size = 1,richness = 1},
     ["stone"] = {frequency = 1,size = 1,richness = 1},
-    ["uranium-ore"] = {frequency = 1,size = 1,richness = 1},
-    ["crude-oil"] = {frequency = 1,size = 1,richness = 1},
     ["coal"] = {frequency = 1,size = 1,richness = 1},
+    ["crude-oil"] = {frequency = 1,size = 1,richness = 1},
+    ["uranium-ore"] = {frequency = 1,size = 1,richness = 1},
     ["water"] = {frequency = 1,size = 1},},
 Nauvis_Railworld = {
     ["iron-ore"] = {frequency = 1/6,size = 6,richness = 6},
     ["copper-ore"] = {frequency = 1/6,size = 6,richness = 6},
     ["stone"] = {frequency = 1/6,size = 6,richness = 6},
-    ["uranium-ore"] = {frequency = 1/6,size = 6,richness = 6},
-    ["crude-oil"] = {frequency = 1/6,size = 6,richness = 6},
     ["coal"] = {frequency = 1/6,size = 6,richness = 6},
+    ["crude-oil"] = {frequency = 1/6,size = 6,richness = 6},
+    ["uranium-ore"] = {frequency = 1/6,size = 6,richness = 6},
     ["water"] = {frequency = 0.5,size = 1.5},},
+Nauvis_Default_Pole_Settings= {
+    ["iron-ore"] = {frequency = 1,size = 1,richness = 1},
+    ["copper-ore"] = {frequency = 1,size = 1,richness = 1},
+    ["stone"] = {frequency = 1,size = 1,richness = 1},
+    ["coal"] = {frequency = 1,size = 1,richness = 1},
+    ["crude-oil"] = {frequency = 1,size = 1,richness = 1},
+    ["uranium-ore"] = {frequency = 1,size = 1,richness = 1},
+    ["water"] = {frequency = 1,size = 1},
+    ["ice-ore"] = {frequency = 1,size = 1,richness = 1},},
 Nauvis_Min_Cliffs = {
     ["nauvis_cliff"] = {frequency = 6,size = 1/6},},
 Nauvis_Half_Cliffs = {
@@ -84,7 +150,7 @@ Nauvis_Max_Cliffs = {
 Default_Biters = {
     ["enemy-base"] = {frequency = 1,size = 1},},
 Min_Biters = {
-    ["enemy-base"] = {frequency = .1,size = .1},},
+    ["enemy-base"] = {frequency = .001,size = .001},},
 Half_Biters = {
     ["enemy-base"] = {frequency = .5,size = .5},},
 Three_Fourth_Biters = {
@@ -146,7 +212,7 @@ Gleba_Max_Cliffs = {
 Default_Pentapods = {
     ["gleba_enemy_base"] = {frequency = 1,size = 1},},
 Min_Pentapods = {
-    ["gleba_enemy_base"] = {frequency = .1,size = .1},},
+    ["gleba_enemy_base"] = {frequency = .001,size = .001},},
 Half_Pentapods = {
     ["gleba_enemy_base"] = {frequency = .5,size = .5},},
 Triple_Pentapods = {
@@ -215,6 +281,13 @@ for i,planet in ipairs(planets) do
         new_planet.name=old_planet.name .. "-"..loc.zone
         new_planet.magnitude=old_planet.magnitude/2
 		--new_planet.hidden_in_factoriopedia = true
+        local is_nauvis_pole =
+            old_planet.name == "nauvis" and
+            (loc.zone == "north-pole" or loc.zone == "south-pole")
+
+        if is_nauvis_pole then
+            apply_nauvis_pole_ice_terrain(new_planet)
+        end
 
         if planets[i] == "nauvis" then
             if loc.zone == "east" or loc.zone == "west" then
@@ -237,6 +310,10 @@ for i,planet in ipairs(planets) do
             elseif loc.temp == 2 then
                 new_planet.map_gen_settings.autoplace_controls["trees"] = nil
                 new_planet.map_gen_settings.autoplace_controls["enemy-base"] = nil
+                new_planet.map_gen_settings.autoplace_controls["nauvis_cliff"] = nil
+                new_planet.map_gen_settings.autoplace_settings["entity"].settings["ice-ore"] = {}
+                apply_preset(new_planet, presets.Nauvis_Default_Pole_Settings)
+
             else
                 apply_preset(new_planet, presets.Nauvis_Default_Settings)
             end
@@ -319,7 +396,7 @@ for i,planet in ipairs(planets) do
         elseif loc.temp == 2 then
             solar_modifier=0.5
             if planets[i] == "nauvis" then
-                new_planet.entities_require_heating = true
+                new_planet.entities_require_heating = false
             end
             if planets[i] == "fulgora" then
 				new_planet.lightning_properties = {
@@ -364,122 +441,254 @@ for i,planet in ipairs(planets) do
 
         local connections
         local root2 = math.sqrt(2)
-        local North = Planet_Locations[1]
-        local South = Planet_Locations[2]
-        local East = Planet_Locations[3]
-        local West = Planet_Locations[4]
-        local North_Pole = Planet_Locations[5]
-        local South_Pole = Planet_Locations[6]
-        local Far_East = Planet_Locations[7]
-        local Far_West = Planet_Locations[8]
-        local North_East = Planet_Locations[9]
-        local North_West = Planet_Locations[10]
-        local South_East = Planet_Locations[11]
-        local South_West = Planet_Locations[12]
-        local Far_North_East = Planet_Locations[13]
-        local Far_South_East = Planet_Locations[14]
-        local Far_North_West = Planet_Locations[15]
-        local Far_South_West = Planet_Locations[16]
+        local mult = 1.0
+        local mult_c45 = 1 / root2
+        local mult_e2c = 5 / 8
+        local mult_e1_c2 = math.acos((root2 / 2) * math.cos(math.rad(72))) / math.rad(72)
 
         if loc.zone == "north-pole" then
             connections  = {
-                {from = planet .. "-" .. North.zone, mult = 1.0 },
+                {from = planet .. "-" .. Loc.North.zone, mult = mult_e2c },
             }
         elseif loc.zone == "south-pole" then
             connections = {
-                {from = planet .. "-" .. South.zone, mult = 1.0 },
+                {from = planet .. "-" .. Loc.South.zone, mult = mult_e2c },
+            }
+        elseif loc.zone == "north" then
+            connections = {
+                {from = planet, mult = mult_e2c },
+            }
+        elseif loc.zone == "south" then
+            connections = {
+                {from = planet, mult = mult_e2c },
             }
         elseif loc.zone == "far-east" then
             connections = {
-                {from = planet .. "-" .. Far_West.zone, mult = 1.0 },
-                {from = planet .. "-" .. East.zone, mult = 1.0 }
+                {from = planet .. "-" .. Loc.Far_West.zone, mult = 1.0 },
+                {from = planet .. "-" .. Loc.East.zone, mult = 1.0 }
             }
         elseif loc.zone == "far-west" then
             connections = {
-                {from = planet .. "-" .. West.zone, mult = 1.0 }
+                {from = planet .. "-" .. Loc.West.zone, mult = 1.0 }
             }
         elseif loc.zone == "east" then
             connections = {
-                {from = planet .. "-" .. South.zone, mult = root2 },
-                {from = planet .. "-" .. North.zone, mult = root2 },
+                {from = planet .. "-" .. Loc.South.zone, mult = mult_e1_c2 },
+                {from = planet .. "-" .. Loc.North.zone, mult = mult_e1_c2 },
                 {from = planet, mult = 1.0 }
             }
         elseif loc.zone == "west" then
             connections = {
-                {from = planet .. "-" .. South.zone, mult = root2 },
-                {from = planet .. "-" .. North.zone, mult = root2 },
+                {from = planet .. "-" .. Loc.South.zone, mult = mult_e1_c2 },
+                {from = planet .. "-" .. Loc.North.zone, mult = mult_e1_c2 },
                 {from = planet, mult = 1.0 }
             }
         elseif loc.zone == "north-west" then
             connections = {
-                {from = planet .. "-" .. North_Pole.zone, mult = 1.0 },
-                {from = planet .. "-" .. Far_West.zone, mult = root2 },
-                {from = planet .. "-" .. North.zone, mult = 1.0 },
-                {from = planet .. "-" .. West.zone, mult = 1.0 },
-                {from = planet, mult = root2 }
+                {from = planet .. "-" .. Loc.North_Pole.zone, mult = mult_e2c },
+                {from = planet .. "-" .. Loc.Far_West.zone, mult = mult_e1_c2 },
+                {from = planet .. "-" .. Loc.North.zone, mult = mult_c45 },
+                {from = planet .. "-" .. Loc.West.zone, mult = mult_e2c },
+                {from = planet, mult = mult_e1_c2 }
             }
         elseif loc.zone == "north-east" then
             connections = {
-                {from = planet .. "-" .. North_Pole.zone, mult = 1.0 },
-                {from = planet .. "-" .. Far_East.zone, mult = root2 },
-                {from = planet .. "-" .. North.zone, mult = 1.0 },
-                {from = planet .. "-" .. East.zone, mult = 1.0 },
-                {from = planet, mult = root2 }
+                {from = planet .. "-" .. Loc.North_Pole.zone, mult = mult_e2c },
+                {from = planet .. "-" .. Loc.Far_East.zone, mult = mult_e1_c2 },
+                {from = planet .. "-" .. Loc.North.zone, mult = mult_c45 },
+                {from = planet .. "-" .. Loc.East.zone, mult = mult_e2c },
+                {from = planet, mult = mult_e1_c2 }
             }
         elseif loc.zone == "south-west" then
             connections = {
-                {from = planet .. "-" .. South_Pole.zone, mult = 1.0 },
-                {from = planet .. "-" .. Far_West.zone, mult = root2 },
-                {from = planet .. "-" .. South.zone, mult = 1.0 },
-                {from = planet .. "-" .. West.zone, mult = 1.0 },
-                {from = planet, mult = root2 }
+                {from = planet .. "-" .. Loc.South_Pole.zone, mult = mult_e2c },
+                {from = planet .. "-" .. Loc.Far_West.zone, mult = mult_e1_c2 },
+                {from = planet .. "-" .. Loc.South.zone, mult = mult_c45 },
+                {from = planet .. "-" .. Loc.West.zone, mult = mult_e2c },
+                {from = planet, mult = mult_e1_c2 }
             }
         elseif loc.zone == "south-east" then
             connections = {
-                {from = planet .. "-" .. South_Pole.zone, mult = 1.0 },
-                {from = planet .. "-" .. Far_East.zone, mult = root2 },
-                {from = planet .. "-" .. South.zone, mult = 1.0 },
-                {from = planet .. "-" .. East.zone, mult = 1.0 },
-                {from = planet, mult = root2 }
+                {from = planet .. "-" .. Loc.South_Pole.zone, mult = mult_e2c },
+                {from = planet .. "-" .. Loc.Far_East.zone, mult = mult_e1_c2 },
+                {from = planet .. "-" .. Loc.South.zone, mult = mult_c45 },
+                {from = planet .. "-" .. Loc.East.zone, mult = mult_e2c },
+                {from = planet, mult = mult_e1_c2 }
             }
         elseif loc.zone == "far-north-west" then
             connections = {
-                {from = planet .. "-" .. North_Pole.zone, mult = 1.0 },
-                {from = planet .. "-" .. North_West.zone, mult = 1.0 },
-                {from = planet .. "-" .. Far_West.zone, mult = 1.0 },
-                {from = planet .. "-" .. West.zone, mult = root2 },
-                {from = planet .. "-" .. Far_North_East.zone, mult = 1.0 },
-                {from = planet .. "-" .. Far_East.zone, mult = root2 }
+                {from = planet .. "-" .. Loc.North_Pole.zone, mult = mult_e2c },
+                {from = planet .. "-" .. Loc.North_West.zone, mult = mult_c45 },
+                {from = planet .. "-" .. Loc.Far_West.zone, mult = mult_e2c },
+                {from = planet .. "-" .. Loc.West.zone, mult = mult_e1_c2 },
+                {from = planet .. "-" .. Loc.Far_North_East.zone, mult = mult_c45 },
+                {from = planet .. "-" .. Loc.Far_East.zone, mult = mult_e1_c2 }
             }
         elseif loc.zone == "far-north-east" then
             connections = {
-                {from = planet .. "-" .. North_Pole.zone, mult = 1.0 },
-                {from = planet .. "-" .. North_East.zone, mult = 1.0 },
-                {from = planet .. "-" .. Far_East.zone, mult = 1.0 },
-                {from = planet .. "-" .. East.zone, mult = root2 },
-                {from = planet .. "-" .. Far_West.zone, mult = root2 },
+                {from = planet .. "-" .. Loc.North_Pole.zone, mult = mult_e2c },
+                {from = planet .. "-" .. Loc.North_East.zone, mult = mult_c45 },
+                {from = planet .. "-" .. Loc.Far_East.zone, mult = mult_e2c },
+                {from = planet .. "-" .. Loc.East.zone, mult = mult_e1_c2 },
+                {from = planet .. "-" .. Loc.Far_West.zone, mult = mult_e1_c2 },
             }
         elseif loc.zone == "far-south-west" then
             connections = {
-                {from = planet .. "-" .. South_Pole.zone, mult = 1.0 },
-                {from = planet .. "-" .. South_West.zone, mult = 1.0 },
-                {from = planet .. "-" .. Far_West.zone, mult = 1.0 },
-                {from = planet .. "-" .. West.zone, mult = root2 },
-                {from = planet .. "-" .. Far_South_East.zone, mult = 1.0 },
-                {from = planet .. "-" .. Far_East.zone, mult = root2 },
+                {from = planet .. "-" .. Loc.South_Pole.zone, mult = mult_e2c },
+                {from = planet .. "-" .. Loc.South_West.zone, mult = mult_c45 },
+                {from = planet .. "-" .. Loc.Far_West.zone, mult = mult_e2c },
+                {from = planet .. "-" .. Loc.West.zone, mult = mult_e1_c2 },
+                {from = planet .. "-" .. Loc.Far_South_East.zone, mult = mult_c45 },
+                {from = planet .. "-" .. Loc.Far_East.zone, mult = mult_e1_c2 },
             }
         elseif loc.zone == "far-south-east" then
             connections = {
-                {from = planet .. "-" .. South_Pole.zone, mult = 1.0 },
-                {from = planet .. "-" .. South_East.zone, mult = 1.0 },
-                {from = planet .. "-" .. Far_East.zone, mult = 1.0 },
-                {from = planet .. "-" .. East.zone, mult = root2 },
-                {from = planet .. "-" .. Far_West.zone, mult = root2 },
+                {from = planet .. "-" .. Loc.South_Pole.zone, mult = mult_e2c },
+                {from = planet .. "-" .. Loc.South_East.zone, mult = mult_c45 },
+                {from = planet .. "-" .. Loc.Far_East.zone, mult = mult_e2c },
+                {from = planet .. "-" .. Loc.East.zone, mult = mult_e1_c2 },
+                {from = planet .. "-" .. Loc.Far_West.zone, mult = mult_e1_c2 },
             }
-        else
-            connections = {
-                {from = planet, mult = 1.0 }
-            }
+        --elseif loc.zone == "sat1" then
+        --    connections = {
+        --        {from = planet .. "-" .. Loc.North_Pole.zone, mult = .5 },
+        --    }
+        --elseif loc.zone == "sat2" then
+        --    connections = {
+        --        {from = planet .. "-" .. Loc.North_Pole.zone, mult = .5 },
+        --    }
+        --elseif loc.zone == "sat3" then
+        --    connections = {
+        --        {from = planet .. "-" .. Loc.South_Pole.zone, mult = .5 },
+        --    }
+        --elseif loc.zone == "sat4" then
+        --    connections = {
+        --        {from = planet .. "-" .. Loc.South_Pole.zone, mult = .5 },
+        --    }
+        --elseif loc.zone == "sat5" then
+        --    connections = {
+        --        {from = planet .. "-" .. Loc.Satelite_1.zone, mult = .5 },
+        --        {from = planet .. "-" .. Loc.Satelite_2.zone, mult = .5 },
+        --    }
+        --elseif loc.zone == "sat6" then
+        --    connections = {
+        --        {from = planet .. "-" .. Loc.Satelite_3.zone, mult = .5 },
+        --        {from = planet .. "-" .. Loc.Satelite_4.zone, mult = .5 },
+        --    }
+        --elseif loc.zone == "sat7" then
+        --    connections = {
+        --        {from = planet .. "-" .. Loc.Satelite_1.zone, mult = .5 },
+        --        {from = planet .. "-" .. Loc.Far_North_West.zone, mult = .5 },
+        --        {from = planet .. "-" .. Loc.North_West.zone, mult = .5 },
+        --    }
+        --elseif loc.zone == "sat8" then
+        --    connections = {
+        --        {from = planet .. "-" .. Loc.Satelite_2.zone, mult = .5 },
+        --        {from = planet .. "-" .. Loc.Far_North_East.zone, mult = .5 },
+        --        {from = planet .. "-" .. Loc.North_East.zone, mult = .5 },
+        --    }
+        --elseif loc.zone == "sat9" then
+        --    connections = {
+        --        {from = planet .. "-" .. Loc.Satelite_3.zone, mult = .5 },
+        --        {from = planet .. "-" .. Loc.Far_South_West.zone, mult = .5 },
+        --        {from = planet .. "-" .. Loc.South_West.zone, mult = .5 },
+        --    }
+        --elseif loc.zone == "sat10" then
+        --    connections = {
+        --        {from = planet .. "-" .. Loc.Satelite_4.zone, mult = .5 },
+        --        {from = planet .. "-" .. Loc.Far_South_East.zone, mult = .5 },
+        --        {from = planet .. "-" .. Loc.South_East.zone, mult = .5 },
+        --    }
+        --elseif loc.zone == "sat11" then
+        --    connections = {
+        --        {from = planet .. "-" .. Loc.Far_North_West.zone, mult = .5 },
+        --        {from = planet .. "-" .. Loc.Far_West.zone, mult = .5 },
+        --        {from = planet .. "-" .. Loc.Satelite_7.zone, mult = .5 },
+        --    }
+        --elseif loc.zone == "sat12" then
+        --    connections = {
+        --        {from = planet .. "-" .. Loc.Far_West.zone, mult = .5 },
+        --        {from = planet .. "-" .. Loc.Far_South_West.zone, mult = .5 },
+        --        {from = planet .. "-" .. Loc.Satelite_9.zone, mult = .5 },
+        --    }
+        --elseif loc.zone == "sat13" then
+        --    connections = {
+        --        {from = planet .. "-" .. Loc.Satelite_11.zone, mult = .5 },
+        --        {from = planet .. "-" .. Loc.Satelite_12.zone, mult = .5 },
+        --    }
+        --elseif loc.zone == "sat14" then
+        --    connections = {
+        --        {from = planet .. "-" .. Loc.Far_North_East.zone, mult = .5 },
+        --        {from = planet .. "-" .. Loc.Far_East.zone, mult = .5 },
+        --        {from = planet .. "-" .. Loc.Satelite_8.zone, mult = .5 },
+        --    }
+        --elseif loc.zone == "sat15" then
+        --    connections = {
+        --        {from = planet .. "-" .. Loc.Far_East.zone, mult = .5 },
+        --        {from = planet .. "-" .. Loc.Far_South_East.zone, mult = .5 },
+        --        {from = planet .. "-" .. Loc.Satelite_10.zone, mult = .5 },
+        --    }
+        --elseif loc.zone == "sat16" then
+        --    connections = {
+        --        {from = planet .. "-" .. Loc.Satelite_14.zone, mult = .5 },
+        --        {from = planet .. "-" .. Loc.Satelite_15.zone, mult = .5 },
+        --    }
+        --elseif loc.zone == "sat17" then
+        --    connections = {
+        --        {from = planet .. "-" .. Loc.Satelite_5.zone, mult = .5 },
+        --        {from = planet .. "-" .. Loc.Satelite_1.zone, mult = .5 },
+        --        {from = planet .. "-" .. Loc.Satelite_2.zone, mult = .5 },
+        --        {from = planet .. "-" .. Loc.North_Pole.zone, mult = .5 },
+        --    }
+        --elseif loc.zone == "sat18" then
+        --    connections = {
+        --        {from = planet .. "-" .. Loc.Satelite_1.zone, mult = .5 },
+        --        {from = planet .. "-" .. Loc.Satelite_7.zone, mult = .5 },
+        --        {from = planet .. "-" .. Loc.North_Pole.zone, mult = .5 },
+        --        {from = planet .. "-" .. Loc.North_West.zone, mult = .5 },
+        --    }
+        --elseif loc.zone == "sat19" then
+        --    connections = {
+        --        {from = planet .. "-" .. Loc.Satelite_2.zone, mult = .5 },
+        --        {from = planet .. "-" .. Loc.Satelite_8.zone, mult = .5 },
+        --        {from = planet .. "-" .. Loc.North_Pole.zone, mult = .5 },
+        --        {from = planet .. "-" .. Loc.North_East.zone, mult = .5 },
+        --    }
+        --elseif loc.zone == "sat20" then
+        --    connections = {
+        --        {from = planet .. "-" .. Loc.Satelite_11.zone, mult = .5 },
+        --        {from = planet .. "-" .. Loc.Satelite_12.zone, mult = .5 },
+        --        {from = planet .. "-" .. Loc.Satelite_13.zone, mult = .5 },
+        --        {from = planet .. "-" .. Loc.Far_West.zone, mult = .5 },
+        --    }
+        --elseif loc.zone == "sat21" then
+        --    connections = {
+        --        {from = planet .. "-" .. Loc.Satelite_14.zone, mult = .5 },
+        --        {from = planet .. "-" .. Loc.Satelite_15.zone, mult = .5 },
+        --        {from = planet .. "-" .. Loc.Satelite_16.zone, mult = .5 },
+        --        {from = planet .. "-" .. Loc.Far_East.zone, mult = .5 },
+        --    }
+        --elseif loc.zone == "sat22" then
+        --    connections = {
+        --        {from = planet .. "-" .. Loc.Satelite_9.zone, mult = .5 },
+        --        {from = planet .. "-" .. Loc.Satelite_3.zone, mult = .5 },
+        --        {from = planet .. "-" .. Loc.South_Pole.zone, mult = .5 },
+        --        {from = planet .. "-" .. Loc.South_West.zone, mult = .5 },
+        --    }
+        --elseif loc.zone == "sat23" then
+        --    connections = {
+        --        {from = planet .. "-" .. Loc.Satelite_10.zone, mult = .5 },
+        --        {from = planet .. "-" .. Loc.Satelite_4.zone, mult = .5 },
+        --        {from = planet .. "-" .. Loc.South_Pole.zone, mult = .5 },
+        --        {from = planet .. "-" .. Loc.South_East.zone, mult = .5 },
+        --    }
+        --elseif loc.zone == "sat24" then
+        --    connections = {
+        --        {from = planet .. "-" .. Loc.Satelite_3.zone, mult = .5 },
+        --        {from = planet .. "-" .. Loc.Satelite_4.zone, mult = .5 },
+        --        {from = planet .. "-" .. Loc.Satelite_6.zone, mult = .5 },
+        --        {from = planet .. "-" .. Loc.South_Pole.zone, mult = .5 },
+        --    }
         end
         
         for _, conn in ipairs(connections) do
