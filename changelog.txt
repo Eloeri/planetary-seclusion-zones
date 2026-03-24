@@ -47,3 +47,8 @@ Version: 1.0.8
 Date: 2026-03-14
   Bugfixes:
     - Fixed Nauvis crude oil settings.
+---------------------------------------------------------------------------------------------------
+Version: 1.0.9
+Date: 2026-03-23
+  Features:
+    - The north and south poles of Nauvis are now a frozen wasteland, in order to get water, you need to mine Ice ore.

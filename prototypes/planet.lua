@@ -396,7 +396,7 @@ for i,planet in ipairs(planets) do
         elseif loc.temp == 2 then
             solar_modifier=0.5
             if planets[i] == "nauvis" then
-                new_planet.entities_require_heating = false
+                new_planet.entities_require_heating = true
             end
             if planets[i] == "fulgora" then
 				new_planet.lightning_properties = {
