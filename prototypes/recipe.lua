@@ -11,7 +11,7 @@ data:extend(
         subgroup = "fluid-recipes",
         order = "d[other-chemistry]-c[ice-ore-melting]",
         auto_recycle = false,
-        enabled = true,
+        enabled = false,
         ingredients = {{type = "item", name = "ice-ore", amount = 1}},
         energy_required = 1,
         results = {{type = "fluid", name = "water", amount = 10}},

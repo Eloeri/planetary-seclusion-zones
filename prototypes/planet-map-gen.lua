@@ -1,8 +1,7 @@
 local planet_map_gen = {}
 
 planet_map_gen.nauvis = function()
-    return
-    {
+    return{
         aux_climate_control = true,
         moisture_climate_control = true,
         property_expression_names =

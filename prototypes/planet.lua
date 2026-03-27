@@ -49,7 +49,7 @@ Planet_Locations = {
     --{ id="Satelite_16",   zone="sat16",         orientation=0,     distance=6,   label=0,    temp=0 },
     --{ id="Satelite_17",   zone="sat17",         orientation=.75,   distance=0,   label=0,    temp=0 },
     --{ id="Satelite_18",   zone="sat18",         orientation=.5,    distance=-1.5,label=0,    temp=0 },
-    --{ id="Satelite_19",   zone="sat19",         orientation=.5,    distance=1.5,label=0,    temp=0 },
+    --{ id="Satelite_19",   zone="sat19",         orientation=.5,    distance=1.5, label=0,    temp=0 },
     --{ id="Satelite_20",   zone="sat20",         orientation=0,     distance=-4.5,label=0,    temp=0 },
     --{ id="Satelite_21",   zone="sat21",         orientation=-0,    distance=4.5, label=0,    temp=0 },
     --{ id="Satelite_22",   zone="sat22",         orientation=-.5,   distance=-1.5,label=0,    temp=0 },
@@ -66,7 +66,7 @@ Planet_label_mod={0.125,0.125,0.125,-0.125,-0.25}
 Planet_Locations_seed_offset={}
 
 for i, loc in ipairs(Planet_Locations) do
-    Planet_Locations_seed_offset[i]=math.random(2^32+1)
+    Planet_Locations_seed_offset[i]=math.random(2^32-2^4)
 end
 
 data:extend({
@@ -134,7 +134,7 @@ Nauvis_Default_Pole_Settings= {
     ["crude-oil"] = {frequency = 1,size = 1,richness = 1},
     ["uranium-ore"] = {frequency = 1,size = 1,richness = 1},
     ["water"] = {frequency = 1,size = 1},
-    ["ice-ore"] = {frequency = 1,size = 1,richness = 1},},
+    ["ice-ore"] = {frequency = 2,size = 2,richness = 2},},
 Nauvis_Min_Cliffs = {
     ["nauvis_cliff"] = {frequency = 6,size = 1/6},},
 Nauvis_Half_Cliffs = {
@@ -288,6 +288,17 @@ for i,planet in ipairs(planets) do
         if is_nauvis_pole then
             apply_nauvis_pole_ice_terrain(new_planet)
         end
+
+        -- local is_nauvis_lava =
+        --     old_planet.name == "nauvis" and
+        --     (loc.zone == "sat1")
+
+        -- if is_nauvis_lava then
+        --     local vulcanus = data.raw["planet"]["vulcanus"]
+        --     if vulcanus and vulcanus.map_gen_settings then
+        --         new_planet.map_gen_settings = table.deepcopy(vulcanus.map_gen_settings)
+        --     end
+        -- end
 
         if planets[i] == "nauvis" then
             if loc.zone == "east" or loc.zone == "west" then
@@ -714,7 +725,26 @@ for i,planet in ipairs(planets) do
             })
         end
         if planet == "nauvis" then
-            table.insert(data.raw["technology"]["space-platform-thruster"].effects,{
+            local tech = data.raw["technology"]["space-platform-thruster"]
+
+            local has_ice_ore_melting = false
+            for _, effect in ipairs(tech.effects) do
+                if effect.type == "unlock-recipe" and effect.recipe == "ice-ore-melting" then
+                    has_ice_ore_melting = true
+                    break
+                end
+            end
+
+            if not has_ice_ore_melting then
+                table.insert(tech.effects,
+                {
+                    type = "unlock-recipe",
+                    recipe = "ice-ore-melting"
+                })
+            end
+
+            table.insert(tech.effects,
+            {
                 type = "unlock-space-location",
                 space_location = new_planet.name,
                 use_icon_overlay_constant = true
