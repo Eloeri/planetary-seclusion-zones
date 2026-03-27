@@ -443,7 +443,7 @@ for i,planet in ipairs(planets) do
         if old_planet.label_orientation then --check if label orientation is defined. Important for modded planets.
             new_planet.label_orientation = old_planet.label_orientation+loc.label
         else
-            new_planet.label_orientation = loc.labl
+            new_planet.label_orientation = loc.label
         end
 
         --if old_planet.name=="fulgora" and (loc.zone=="west" or loc.zone=="east") then --I don't know why fulgora's west/east labels are opposite the rest. This fixes that discrepancy.
